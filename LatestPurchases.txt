@@ -2,14 +2,6 @@
 
 
 
-
-
 Rent
-Groceries
-Burrito
+Dinner
 Gift
-
-
-Restaurant
-
-
