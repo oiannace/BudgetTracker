@@ -1,7 +1,13 @@
 
 
-
-
-Rent
-Dinner
+Mechanic
+Groceries
+Burritos
 Gift
+
+
+Pharmacy
+
+
+Dog Food
+

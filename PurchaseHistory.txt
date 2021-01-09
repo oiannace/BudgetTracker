@@ -1,3 +1,6 @@
-Rent $500.0
-Dinner $100.0
-Gift $65.0
+Mechanic $100.0
+Groceries $70.0
+Burritos $30.0
+Gift $45.0
+Pharmacy $10.0
+Dog Food $25.0

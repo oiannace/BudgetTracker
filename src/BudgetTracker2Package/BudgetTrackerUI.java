@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package BudgetTracker2Package;
-
 /**
  *
  * @author Ornello
@@ -20,14 +14,14 @@ import java.io.*;
 
 public class BudgetTrackerUI extends JPanel
 {
-    private JTextField a;
-    private JTextField b;
-    private JTextField delta;
-    int size1;
+    private JTextField MB;
+    private JTextField Newexp;
+    private JTextField ExpDesc;
     double Expensetotal = 0;
     double MonthlyBudget = 0;
     ArrayList<String> LatestPurchases = new ArrayList<String>();
     ArrayList<Double> PurchasePrices = new ArrayList<Double>();
+    
     public BudgetTrackerUI(int size)
     {
         this.setPreferredSize(new Dimension(size, size));
@@ -54,10 +48,10 @@ public class BudgetTrackerUI extends JPanel
             @Override
             public void mouseClicked(MouseEvent e){
                 try{
-                    FileWriter writer = new FileWriter("C:\\Users\\Ornello\\Documents\\BudgetTracker2\\MonthlyBudget.txt");
-                    FileWriter expensewriter = new FileWriter("C:\\Users\\Ornello\\Documents\\BudgetTracker2\\Expensesfile.txt");
-                    FileWriter expensedetaillist = new FileWriter("C:\\Users\\Ornello\\Documents\\BudgetTracker2\\LatestPurchases.txt");
-                    FileWriter PurchaseHistoryWriter = new FileWriter("C:\\Users\\Ornello\\Documents\\BudgetTracker2\\PurchaseHistory.txt");
+                    FileWriter writer = new FileWriter("C:\\Users\\Ornello\\Documents\\BudgetTracker2\\MonthlyBudget.txt"); //Replace with user file path
+                    FileWriter expensewriter = new FileWriter("C:\\Users\\Ornello\\Documents\\BudgetTracker2\\Expensesfile.txt"); //Replace with user file path
+                    FileWriter expensedetaillist = new FileWriter("C:\\Users\\Ornello\\Documents\\BudgetTracker2\\LatestPurchases.txt"); //Replace with user file path
+                    FileWriter PurchaseHistoryWriter = new FileWriter("C:\\Users\\Ornello\\Documents\\BudgetTracker2\\PurchaseHistory.txt"); //Replace with user file path
                     
                     writer.write("");
                     expensewriter.write("");
@@ -85,49 +79,47 @@ public class BudgetTrackerUI extends JPanel
         JLabel l = new JLabel("Change Monthly Budget:");
         JLabel l1 = new JLabel("Enter Expense:");
         JLabel l2 = new JLabel("Purchase Descrption:");
-        a = new JTextField( 2);
-        b = new JTextField(3);
-        delta = new JTextField( 10);
+        MB = new JTextField( 2);
+        Newexp = new JTextField(3);
+        ExpDesc = new JTextField( 10);
         BufferedReader myReader = null;
         BufferedReader expensefile = null;
         BufferedReader purchasetype = null;
         
         JPanel p = new JPanel();
         p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
-        p.add(l);p.add(a);
-        p.add(l1);p.add(b);
-        p.add(l2);p.add(delta);
+        p.add(l);p.add(MB);
+        p.add(l1);p.add(Newexp);
+        p.add(l2);p.add(ExpDesc);
         p.add(hyperlinkPurchaseHist);
         p.add(hyperlinkclearfiles);
         
-        size1 = size;
         this.add(p);
         
         try{
-            expensefile = new BufferedReader(new FileReader("C:\\Users\\Ornello\\Documents\\BudgetTracker2\\Expensesfile.txt"));
+            expensefile = new BufferedReader(new FileReader("C:\\Users\\Ornello\\Documents\\BudgetTracker2\\Expensesfile.txt")); //Replace with user file path
             String tempexp = null;
             while((tempexp = expensefile.readLine()) != null){
                 PurchasePrices.add(Double.parseDouble(tempexp));
                 Expensetotal = Double.parseDouble(tempexp) + Expensetotal;
                 }
-            myReader = new BufferedReader(new FileReader("C:\\Users\\Ornello\\Documents\\BudgetTracker2\\MonthlyBudget.txt"));
+            myReader = new BufferedReader(new FileReader("C:\\Users\\Ornello\\Documents\\BudgetTracker2\\MonthlyBudget.txt")); //Replace with user file path
             String temp = null;
             
             while((temp = myReader.readLine()) != null){
                 
                 MonthlyBudget = Double.parseDouble(temp);    
             }
-            purchasetype = new BufferedReader(new FileReader("C:\\Users\\Ornello\\Documents\\BudgetTracker2\\LatestPurchases.txt"));
+            purchasetype = new BufferedReader(new FileReader("C:\\Users\\Ornello\\Documents\\BudgetTracker2\\LatestPurchases.txt")); //Replace with user file path
             String temppurchase = null;
             while((temppurchase = purchasetype.readLine())!= null){
                 if(!temppurchase.equals("")){
                     LatestPurchases.add(temppurchase);}
             }
         }
-        catch(IOException e){
-            System.out.println("dang");}
+        catch(IOException e){System.out.println("IO ex");}
         catch(NullPointerException e1){System.out.println("null ex");}
-        catch(NumberFormatException e){System.out.println("num ex");}
+        catch(NumberFormatException e){System.out.println("num format ex");}
         finally{
             try{
                 if(expensefile != null){
@@ -141,30 +133,31 @@ public class BudgetTrackerUI extends JPanel
                     ex.printStackTrace();                   
             }};
         
-        a.addActionListener(new ActionListener() {
+        MB.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
         {
             repaint();
         }
         });
-        b.addActionListener(new ActionListener() {
+        Newexp.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
         {
             repaint();           
         }
         });
-        delta.addActionListener(new ActionListener() {
+        ExpDesc.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
         {
             repaint();            
         }
         });
     }
+    
     public File PurchaseHistoryFile(){
-        File file = new File("C:\\Users\\Ornello\\Documents\\BudgetTracker2\\PurchaseHistory.txt");
+        File file = new File("C:\\Users\\Ornello\\Documents\\BudgetTracker2\\PurchaseHistory.txt"); //Replace with user file path
             if(LatestPurchases.size() != 0 && PurchasePrices.size() != 0){
             try{
-                FileWriter PurchaseHistoryWriter = new FileWriter("C:\\Users\\Ornello\\Documents\\BudgetTracker2\\PurchaseHistory.txt");
+                FileWriter PurchaseHistoryWriter = new FileWriter("C:\\Users\\Ornello\\Documents\\BudgetTracker2\\PurchaseHistory.txt"); //Replace with user file path
                 for(int i = 0; i<LatestPurchases.size(); i++){
                     PurchaseHistoryWriter.write(LatestPurchases.get(i) + " $" + Double.toString(PurchasePrices.get(i)) + "\n");
                     
@@ -175,35 +168,35 @@ public class BudgetTrackerUI extends JPanel
             }
         return file;
     }
+    
     @Override@SuppressWarnings("empty-statement")
     public void paintComponent(Graphics g)
     {
         double NewMonthlyBudget = 0, Newexpense = 0;
         String latestpurchase = null;
         try{
-            NewMonthlyBudget = Double.parseDouble(a.getText());
-            //System.out.println("goo" + a.getText());
+            NewMonthlyBudget = Double.parseDouble(MB.getText());
         }
-        catch(NumberFormatException e){Thread.currentThread().interrupt();System.out.println("herem");};
+        catch(NumberFormatException e){Thread.currentThread().interrupt();};
         try{
-            Newexpense = Double.parseDouble(b.getText());
+            Newexpense = Double.parseDouble(Newexp.getText());
             PurchasePrices.add(Newexpense);
         }
-        catch(NumberFormatException e){Thread.currentThread().interrupt();System.out.println("here");};
+        catch(NumberFormatException e){Thread.currentThread().interrupt();};
         try{
-            latestpurchase = delta.getText();
+            latestpurchase = ExpDesc.getText();
            
-            if(delta.getText().length() == 0){
-                throw new IllegalArgumentException("you got me");
+            if(ExpDesc.getText().length() == 0){
+                throw new IllegalArgumentException();
             }
             LatestPurchases.add(latestpurchase);
         }
-        catch(IllegalArgumentException e){Thread.currentThread().interrupt();System.out.println("herep");};
+        catch(IllegalArgumentException e){Thread.currentThread().interrupt();};
         
         try{
-            FileWriter writer = new FileWriter("C:\\Users\\Ornello\\Documents\\BudgetTracker2\\MonthlyBudget.txt", true);
-            FileWriter expensewriter = new FileWriter("C:\\Users\\Ornello\\Documents\\BudgetTracker2\\Expensesfile.txt", true);
-            FileWriter expensedetaillist = new FileWriter("C:\\Users\\Ornello\\Documents\\BudgetTracker2\\LatestPurchases.txt", true);
+            FileWriter writer = new FileWriter("C:\\Users\\Ornello\\Documents\\BudgetTracker2\\MonthlyBudget.txt", true); //Replace with user file path
+            FileWriter expensewriter = new FileWriter("C:\\Users\\Ornello\\Documents\\BudgetTracker2\\Expensesfile.txt", true); //Replace with user file path
+            FileWriter expensedetaillist = new FileWriter("C:\\Users\\Ornello\\Documents\\BudgetTracker2\\LatestPurchases.txt", true); //Replace with user file path
             if(Newexpense != 0){
                 expensewriter.write(Double.toString(Newexpense)+"\n");
                 Expensetotal = Expensetotal + Newexpense;               
@@ -211,7 +204,6 @@ public class BudgetTrackerUI extends JPanel
             if(NewMonthlyBudget != 0){
                 writer.write(Double.toString(NewMonthlyBudget)+"\n");
                 MonthlyBudget = NewMonthlyBudget;
-                //This one can be overwritten but the latest purchases need to not overwrite eachother
             }
             if(latestpurchase  != null){
                 expensedetaillist.write(latestpurchase + "\n");
@@ -247,9 +239,9 @@ public class BudgetTrackerUI extends JPanel
             catch(IndexOutOfBoundsException e1){}
             catch(NullPointerException e2){};
         }
-        a.setText("");
-        b.setText("");
-        delta.setText("");
+        MB.setText("");
+        Newexp.setText("");
+        ExpDesc.setText("");
     }
     
 }
