@@ -11,7 +11,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.*;
-
+import java.time.LocalDate;
 public class BudgetTrackerUI extends JPanel
 {
     private JTextField MB;
@@ -158,8 +158,9 @@ public class BudgetTrackerUI extends JPanel
             if(LatestPurchases.size() != 0 && PurchasePrices.size() != 0){
             try{
                 FileWriter PurchaseHistoryWriter = new FileWriter("C:\\Users\\Ornello\\Documents\\BudgetTracker2\\PurchaseHistory.txt"); //Replace with user file path
+                PurchaseHistoryWriter.write("Purchase...........Date\n\n");
                 for(int i = 0; i<LatestPurchases.size(); i++){
-                    PurchaseHistoryWriter.write(LatestPurchases.get(i) + " $" + Double.toString(PurchasePrices.get(i)) + "\n");
+                    PurchaseHistoryWriter.write(LatestPurchases.get(i) + " $" + Double.toString(PurchasePrices.get(i)) + "    " + LocalDate.now() + "\n");
                     
                 }
                 PurchaseHistoryWriter.close();

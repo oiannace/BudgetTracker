@@ -1,6 +1,9 @@
-Mechanic $100.0
-Groceries $70.0
-Burritos $30.0
-Gift $45.0
-Pharmacy $10.0
-Dog Food $25.0
+Purchase...........Date
+
+Mechanic $100.0    2021-01-13
+Groceries $70.0    2021-01-13
+Burritos $30.0    2021-01-13
+Gift $45.0    2021-01-13
+Pharmacy $10.0    2021-01-13
+Dog Food $25.0    2021-01-13
+Groceries $30.0    2021-01-13
